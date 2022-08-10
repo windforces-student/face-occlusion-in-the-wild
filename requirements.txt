@@ -6,6 +6,7 @@ scipy==1.2.0
 scikit_learn==0.20.2
 matplotlib~=2.2.0
 tqdm==4.23.4
+pandas==0.23.2
 
 # mxnet==1.4.0
 # mxnet-cu92==1.4.0

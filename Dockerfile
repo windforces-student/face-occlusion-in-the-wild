@@ -44,9 +44,10 @@ RUN pip3 install --trusted-host ftp.daumkakao.com -i http://ftp.daumkakao.com/py
 
 # Install ONNX-RUNTIME
 WORKDIR /workspace
-RUN apt-add-repository "deb https://apt.kitware.com/ubuntu/ $(lsb_release -cs) main" \
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6AF7F09730B3F0A4 \
+    && apt-add-repository "deb https://apt.kitware.com/ubuntu/ $(lsb_release -cs) main" \
     && apt-get update \
-    && apt install cmake
+    && apt install -y cmake
 
 RUN git clone -b v0.3.1 https://github.com/microsoft/onnxruntime.git \
     && cd onnxruntime \
