@@ -7,11 +7,14 @@ Kakao Pay AI Engineer 채용과제입니다.
 - 얼굴의 가림 유무를 분류하는 모델입니다.
 - Mobilefacenet 을 사용하였으며, Accuracy 기준 93.9 % 의 성능을 달성하였습니다.
 - Implementation 은 [InsightFace_Pytorch](https://github.com/TreB1eN/InsightFace_Pytorch) 를 참조하였습니다. 아래는 원본 repository 의 설명입니다.
+
 ------
+
 - This repo is a reimplementation of Arcface[(paper)](https://arxiv.org/abs/1801.07698), or Insightface[(github)](https://github.com/deepinsight/insightface)
 - For models, including the pytorch implementation of the backbone modules of Arcface and MobileFacenet
 - Codes for transform MXNET data records in Insightface[(github)](https://github.com/deepinsight/insightface) to Image Datafolders are provided
 - Pretrained models are posted, include the [MobileFacenet](https://arxiv.org/abs/1804.07573) and IR-SE50 in the original paper
+
 ------
 
 ## Datasets & Performance
