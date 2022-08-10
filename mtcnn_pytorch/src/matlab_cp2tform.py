@@ -9,10 +9,12 @@ import numpy as np
 from numpy.linalg import inv, norm, lstsq
 from numpy.linalg import matrix_rank as rank
 
+
 class MatlabCp2tormException(Exception):
     def __str__(self):
         return 'In File {}:{}'.format(
-                __file__, super.__str__(self))
+            __file__, super.__str__(self))
+
 
 def tformfwd(trans, uv):
     """
@@ -64,7 +66,6 @@ def tforminv(trans, uv):
 
 
 def findNonreflectiveSimilarity(uv, xy, options=None):
-
     options = {'K': 2}
 
     K = options['K']
@@ -101,8 +102,8 @@ def findNonreflectiveSimilarity(uv, xy, options=None):
 
     Tinv = np.array([
         [sc, -ss, 0],
-        [ss,  sc, 0],
-        [tx,  ty, 1]
+        [ss, sc, 0],
+        [tx, ty, 1]
     ])
 
     # print('--->Tinv:\n', Tinv
@@ -116,11 +117,10 @@ def findNonreflectiveSimilarity(uv, xy, options=None):
 
 
 def findSimilarity(uv, xy, options=None):
-
     options = {'K': 2}
 
-#    uv = np.array(uv)
-#    xy = np.array(xy)
+    #    uv = np.array(uv)
+    #    xy = np.array(xy)
 
     # Solve for trans1
     trans1, trans1_inv = findNonreflectiveSimilarity(uv, xy, options)

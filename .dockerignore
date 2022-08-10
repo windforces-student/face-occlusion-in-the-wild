@@ -1,0 +1,29 @@
+# Prevent accidental copy of previous commits
+data/facebank
+data/new_train_3
+data/__MACOSX
+*.zip
+work_space
+core
+
+# Git related directory
+.git/
+.github/
+
+# Test code
+test/
+tmp/
+
+# Non-code information
+*.md
+*.jpg
+*.png
+*.ipynb
+Makefile
+LICENSE
+Dockerfile
+**/__pycache__
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*-checkpoint.ipynb

@@ -24,12 +24,11 @@
 # SOFTWARE.
 
 import numpy as np
-from sklearn.model_selection import KFold
-from sklearn.decomposition import PCA
 import sklearn
 from scipy import interpolate
-import datetime
-import mxnet as mx
+from sklearn.decomposition import PCA
+from sklearn.model_selection import KFold
+
 
 def calculate_roc(thresholds, embeddings1, embeddings2, actual_issame, nrof_folds=10, pca=0):
     assert (embeddings1.shape[0] == embeddings2.shape[0])
@@ -73,7 +72,7 @@ def calculate_roc(thresholds, embeddings1, embeddings2, actual_issame, nrof_fold
         for threshold_idx, threshold in enumerate(thresholds):
             _, _, acc_train[threshold_idx] = calculate_accuracy(threshold, dist[train_set], actual_issame[train_set])
         best_threshold_index = np.argmax(acc_train)
-#         print('best_threshold_index', best_threshold_index, acc_train[best_threshold_index])
+        #         print('best_threshold_index', best_threshold_index, acc_train[best_threshold_index])
         best_thresholds[fold_idx] = thresholds[best_threshold_index]
         for threshold_idx, threshold in enumerate(thresholds):
             tprs[fold_idx, threshold_idx], fprs[fold_idx, threshold_idx], _ = calculate_accuracy(threshold,
@@ -162,9 +161,9 @@ def evaluate(embeddings, actual_issame, nrof_folds=10, pca=0):
     embeddings1 = embeddings[0::2]
     embeddings2 = embeddings[1::2]
     tpr, fpr, accuracy, best_thresholds = calculate_roc(thresholds, embeddings1, embeddings2,
-                                       np.asarray(actual_issame), nrof_folds=nrof_folds, pca=pca)
-#     thresholds = np.arange(0, 4, 0.001)
-#     val, val_std, far = calculate_val(thresholds, embeddings1, embeddings2,
-#                                       np.asarray(actual_issame), 1e-3, nrof_folds=nrof_folds)
-#     return tpr, fpr, accuracy, best_thresholds, val, val_std, far
+                                                        np.asarray(actual_issame), nrof_folds=nrof_folds, pca=pca)
+    #     thresholds = np.arange(0, 4, 0.001)
+    #     val, val_std, far = calculate_val(thresholds, embeddings1, embeddings2,
+    #                                       np.asarray(actual_issame), 1e-3, nrof_folds=nrof_folds)
+    #     return tpr, fpr, accuracy, best_thresholds, val, val_std, far
     return tpr, fpr, accuracy, best_thresholds

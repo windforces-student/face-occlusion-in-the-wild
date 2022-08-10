@@ -1,10 +1,14 @@
-import torch
-from torch.autograd import Variable
 import math
-from PIL import Image
+
 import numpy as np
+import torch
+from PIL import Image
+
 from .box_utils import nms, _preprocess
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
+device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
+
+
 # device = 'cpu'
 
 def run_first_stage(image, net, scale, threshold):
@@ -26,7 +30,7 @@ def run_first_stage(image, net, scale, threshold):
 
     # scale the image and convert it to a float array
     width, height = image.size
-    sw, sh = math.ceil(width*scale), math.ceil(height*scale)
+    sw, sh = math.ceil(width * scale), math.ceil(height * scale)
     img = image.resize((sw, sh), Image.BILINEAR)
     img = np.asarray(img, 'float32')
 
@@ -88,10 +92,10 @@ def _generate_bboxes(probs, offsets, scale, threshold):
     # P-Net is applied to scaled images
     # so we need to rescale bounding boxes back
     bounding_boxes = np.vstack([
-        np.round((stride*inds[1] + 1.0)/scale),
-        np.round((stride*inds[0] + 1.0)/scale),
-        np.round((stride*inds[1] + 1.0 + cell_size)/scale),
-        np.round((stride*inds[0] + 1.0 + cell_size)/scale),
+        np.round((stride * inds[1] + 1.0) / scale),
+        np.round((stride * inds[0] + 1.0) / scale),
+        np.round((stride * inds[1] + 1.0 + cell_size) / scale),
+        np.round((stride * inds[0] + 1.0 + cell_size) / scale),
         score, offsets
     ])
     # why one is added?
